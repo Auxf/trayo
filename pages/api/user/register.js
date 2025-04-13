@@ -39,11 +39,10 @@ export default async function handler(req, res) {
       },
     });
 
-    // Return the user without the password
-    const { password: _, ...userWithoutPassword } = user;
-    return res.status(201).json(userWithoutPassword);
+    // Return a basic success message only (no user info for security)
+    return res.status(201).json({ message: "User created successfully" });
   } catch (error) {
-    console.error(error);
+    console.error("Error creating user:", error);
     return res.status(500).json({ message: "Something went wrong" });
   }
 }
